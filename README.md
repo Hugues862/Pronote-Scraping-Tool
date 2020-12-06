@@ -11,3 +11,6 @@ ou
 - Lancez directement le .py mais vous devez installer les packages avec pip
 
 marche avec selenium
+
+# todo
+- powershell instead of console
