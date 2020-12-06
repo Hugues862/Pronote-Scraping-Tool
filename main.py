@@ -5,8 +5,18 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 import matplotlib.pyplot as plt
-import credentials
-username, password = credentials.login['username'], credentials.login['password']
+try:
+    import credentials
+    username, password = credentials.login['username'], credentials.login['password']
+except:
+    username = input("identifiant Atrium : ")
+    password = input("mot de pass Atrium : ")
+    with open("credentials.py", "w") as file:
+        file.write('login = {')
+        file.write(f'"username" : "{username}",')
+        file.write(f'"password" : "{password}"')
+        file.write('}')
+
 
 #start driver
 driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -37,13 +47,12 @@ def prepare_extract():
     
     i = 0
     prev = 0
-    print(len(redfn()))
     while prev != len(redfn()):
         if prev != len(redfn()):
             prev = len(redfn())
         reduce = redfn()
         
-        print(len(reduce))
+
         try:
             reduce[i].click() 
         except:
